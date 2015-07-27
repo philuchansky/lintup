@@ -1,7 +1,10 @@
-# lintup
+# Lintup
+
+
+
 A tool for sharing and discovering useful code snippets.
 
-Users can sign up for a free account and immediately begin contributing code snippets they find useful, and can also save other user's snippets by 'linting' them, which is a fancy tech startup word for 'liking' them.
+Users can sign up for a free account and immediately begin contributing code snippets they find useful, and can also bookmark other user's snippets by 'linting' them, which is a fancy L.A. tech startup word for 'liking', or them.
 
 # First Iteration ERD
 
@@ -48,6 +51,3 @@ As a user, I want to comment on other snippets with an editor that allows me to 
 As a user, I want to be able to see how many 'lints' my snippets have, and see a breakdown of how many snippets and total number of 'lints' I've got from my user profile page.
 
 As a user, I want to be able to edit my profile information quickly and easily, including my name, email, password, username, and github link, in the event my contact info needs to be updated.
-
-
-
