@@ -1,7 +1,12 @@
-# lintup
+# Lintup
+
+
+
 A tool for sharing and discovering useful code snippets.
 
-Users can sign up for a free account and immediately begin contributing code snippets they find useful, and can also save other user's snippets by 'linting' them, which is a fancy tech startup word for 'liking' them.
+Users can sign up for a free account and immediately begin contributing code snippets they find useful, and can also bookmark other user's snippets by 'linting' them, which is a fancy L.A. tech startup word for 'liking', or them.
+
+Snippets can be associated with a particular programming language, which would affect the syntax highlighting when creating, editing or viewing a snippet.
 
 # First Iteration ERD
 
@@ -49,5 +54,12 @@ As a user, I want to be able to see how many 'lints' my snippets have, and see a
 
 As a user, I want to be able to edit my profile information quickly and easily, including my name, email, password, username, and github link, in the event my contact info needs to be updated.
 
+# Backlog
 
+- Snippets can be searched for from the global nav-bar.
+- Code Challenges: Site admin can add code challenges, that can be completed by user-submitted snippets.
+- Snippets can be optionally tagged with keywords to make searching and grouping easier.
+- [repl.it](http://repl.it/api) API integration to allow running snippets directly from lintup within the browser to test.
 
+## Progress
+Track Progress on: [Trello](https://trello.com/b/ECadgiJh/lintup)
