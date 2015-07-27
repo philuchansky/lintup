@@ -1,0 +1,14 @@
+<h1><%= @user.username %></h1>
+<% if @user.github_username %>
+	<a href="http://github.com/<%= @user.github_username %>" target="_blank">Github</a>
+<% end %>
+
+<div class="snippets">
+<% @user.snippets.each do |s| %>
+		<hr>
+    <div class="snippet">
+	    <h2><%= s.title %></h2>
+	    <textarea disabled><%= s.title %></textarea>
+    </div>
+<% end %>
+</div>
