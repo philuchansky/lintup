@@ -1,11 +1,29 @@
 # lintup
 A tool for sharing and discovering useful code snippets.
 
-Users can sign up for a free account and immediately begin contributing code snippets they find useful, and can also save other user's snippets by 'linting' them, which is a fancy word for 'liking' them.
+Users can sign up for a free account and immediately begin contributing code snippets they find useful, and can also save other user's snippets by 'linting' them, which is a fancy tech startup word for 'liking' them.
 
-# First Iteration ERD:
+# First Iteration ERD
 
 ![First Iteration ERD](https://cloud.githubusercontent.com/assets/5580178/8899927/3a182092-33ef-11e5-8412-0e47fc9ef0d2.png)
+
+# Wireframes
+
+Generalized idea for home page, includes a hero banner, and a feed of recent 'snippets':
+
+![](https://cloud.githubusercontent.com/assets/5580178/8900521/b0f7c5ea-33f5-11e5-8690-d78c2c8152e0.png)
+
+
+Generalized idea for the user profile page template, which displays their "Gravatar", profile info, and recent snippets for that user:
+
+![](https://cloud.githubusercontent.com/assets/5580178/8900490/620761e8-33f5-11e5-8871-13959025b37c.png)
+
+The "New Snippet" page template provides an inline browser-based text editor like sublime which allows for auto-indentation, code-completion, and syntax highlighting, using the [CodeMirror](http://codemirror.net) framework:
+
+![](https://cloud.githubusercontent.com/assets/5580178/8900595/3f80823e-33f6-11e5-93a5-65c0be19a7e2.png)
+
+
+
 
 # User Stories
 
