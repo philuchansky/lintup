@@ -59,6 +59,7 @@ As a user, I want to be able to edit my profile information quickly and easily, 
 - Snippets can be searched for from the global nav-bar.
 - Code Challenges: Site admin can add code challenges, that can be completed by user-submitted snippets.
 - Snippets can be optionally tagged with keywords to make searching and grouping easier.
+- [repl.it](http://repl.it/api) API integration to allow running snippets directly from lintup within the browser to test.
 
 ## Progress
 Track Progress on: [Trello](https://trello.com/b/ECadgiJh/lintup)
