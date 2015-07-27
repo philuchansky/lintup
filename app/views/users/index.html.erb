@@ -1,6 +1,11 @@
 <% @users.each do |u| %>
 	<div class="user">
 		<h3><%= u.username %></h3>
+		<ul>Snippets (<%= u.snippets.count %>):
+		    <% u.snippets.each do |s| %>
+		        <li><%= s.title %></li>
+		    <% end %>
+		</ul>
 		<p><%= u.github_username %></p>
 	</div>
 <% end %>
