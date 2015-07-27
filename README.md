@@ -51,3 +51,6 @@ As a user, I want to comment on other snippets with an editor that allows me to 
 As a user, I want to be able to see how many 'lints' my snippets have, and see a breakdown of how many snippets and total number of 'lints' I've got from my user profile page.
 
 As a user, I want to be able to edit my profile information quickly and easily, including my name, email, password, username, and github link, in the event my contact info needs to be updated.
+
+## Progress
+Track Progress on: [Trello](https://trello.com/b/ECadgiJh/lintup)
