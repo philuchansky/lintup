@@ -22,7 +22,17 @@ The "New Snippet" page template provides an inline browser-based text editor lik
 
 ![](https://cloud.githubusercontent.com/assets/5580178/8900595/3f80823e-33f6-11e5-93a5-65c0be19a7e2.png)
 
+# Technologies:
 
+Application framework: [Ruby on Rails ](http://rubyonrails.org/)
+
+Markdown Comment Creation: [simplemde.js](https://github.com/NextStepWebs/simplemde-markdown-editor)
+
+Markdown Comment Viewing: [showdown.js](https://github.com/showdownjs/showdown)
+
+Adding Snippets: [CodeMirror](https://codemirror.net/)
+
+Frontend UI Framework: [Bootstrap](http://getbootstrap.com/)
 
 
 # User Stories
