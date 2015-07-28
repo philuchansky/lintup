@@ -1,4 +1,7 @@
 class SnippetsController < ApplicationController
+  before_action :authorize, only: [:new,:create,:edit,:update,:destroy]
+
+
   def index
     @user = User.find(params[:user_id])
   end
