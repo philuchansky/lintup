@@ -14,11 +14,13 @@ User ID Param: <%= params[:id] %>
 
 
 <div class="snippets">
-<% @user.snippets.each do |s| %>
+<% @user.snippets.order("created_at DESC").each do |s| %>
 		<hr>
     <div class="snippet">
-	    <h3><%= s.title %></h3>
+	    <h3><%= link_to s.title, user_snippet_path(s.user.id,s.id) %></h3>
+
 	    <textarea disabled><%= s.title %></textarea>
+        <%= link_to 'Edit', edit_user_snippet_path(s.user.id,s.id) %>
     </div>
 <% end %>
 </div>
