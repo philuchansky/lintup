@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     # if current_user.id.to_s == params[:id].to_s
     @user = User.find(session[:user_id])
     else
-      redirect_to '/'
+      redirect_to root_path
     end
 
   end
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_destroy
-    redirect_to '/' unless user_id_is_params_id?
+    redirect_to root_path unless user_id_is_params_id?
 
   end
 
@@ -50,9 +50,9 @@ class UsersController < ApplicationController
     if user_id_is_params_id?
       @user = User.find(params[:id])
       @user.destroy
-      redirect_to users_path
+      redirect_to root_path
     else
-      redirect_to '/'
+      redirect_to root_path
     end
 
   end
