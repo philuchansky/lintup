@@ -1,11 +1,14 @@
 <% @users.each do |u| %>
 	<div class="user">
-		<h3><%= u.username %></h3>
+		<!--<h3><%= u.username %></h3>-->
+		<h3><%= link_to u.username, user_path(u) %></h3>
 		<ul>Snippets (<%= u.snippets.count %>):
 		    <% u.snippets.each do |s| %>
 		        <li><%= s.title %></li>
 		    <% end %>
 		</ul>
-		<p>Github: <%= link_to "#{u.github_username}", "http://github.com/#{u.github_username}", target: '_blank' %></p>
+		<% if u.github_username %>
+	        <p>Github: <%= link_to "#{u.github_username}", "http://github.com/#{u.github_username}", target: '_blank' %></p>
+	    <% end %>
 	</div>
 <% end %>
