@@ -1,6 +1,6 @@
 <h1>All Snippets:</h1>
 
-<% @snippets.each do |s| %>
-	<h2><%= link_to s.title, snippet_path(s) %></h2>
+<% @user.snippets.each do |s| %>
+	<h2><%= link_to s.title, user_snippet_path(s.user.id,s.id) %></h2>
 	<h3>By: <%= link_to s.user.username, user_path(s.user) %></h3>
 <% end %>

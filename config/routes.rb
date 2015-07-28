@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  root 'snippets#index'
+  #root 'snippets#index'
   ### USERS
   get '/users/:id/delete' => 'users#confirm_destroy', as: :delete_user
   get '/users/:id/confirm_delete' => 'users#destroy', as: :confirm_delete_user
 
-  resources :users, except: :destroy
+  get '/snippets' => 'snippets#index_global'
 
-  ### SNIPPETS
-  resources :snippets
+  resources :users, except: :destroy do
+    ### SNIPPETS
+    resources :snippets
+  end
+
+
+
 
   ### SESSIONS
   get '/logout' => 'sessions#destroy'
