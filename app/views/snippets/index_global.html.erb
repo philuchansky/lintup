@@ -1,5 +1,6 @@
 <% @snippets.each do |s| %>
 	<div>
+		<hr>
 	    <h3><%= link_to s.title, user_snippet_path(s.user.id,s.id) %></h3>
 		<h4>By: <%= link_to s.user.username, user_path(s.user) %></h4>
 		<textarea disabled><%= s.content %></textarea>
