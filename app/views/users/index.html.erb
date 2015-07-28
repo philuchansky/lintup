@@ -6,6 +6,6 @@
 		        <li><%= s.title %></li>
 		    <% end %>
 		</ul>
-		<p><%= u.github_username %></p>
+		<p>Github: <%= link_to "#{u.github_username}", "http://github.com/#{u.github_username}", target: '_blank' %></p>
 	</div>
 <% end %>

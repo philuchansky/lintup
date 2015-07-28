@@ -23,7 +23,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if user_id_is_params_id?
+    # if current_user.id.to_s == params[:id].to_s
     @user = User.find(session[:user_id])
+    else
+      redirect_to '/'
+    end
+
   end
 
   def update
@@ -36,6 +42,7 @@ class UsersController < ApplicationController
   end
 
   def confirm_destroy
+    redirect_to '/' unless user_id_is_params_id?
 
   end
 
