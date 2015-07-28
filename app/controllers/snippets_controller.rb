@@ -17,6 +17,7 @@ class SnippetsController < ApplicationController
 
   def create
     @snippet = Snippet.new(snippet_params)
+    @snippet.user = current_user
     if @snippet.save
       redirect_to root_path
     else
@@ -35,6 +36,6 @@ class SnippetsController < ApplicationController
 
   private
   def snippet_params
-    params.require(:snippet).permit(:title,:content)
+    params.require(:snippet).permit(:title,:content,:language)
   end
 end
