@@ -47,7 +47,16 @@ class SnippetsController < ApplicationController
     end
   end
 
+  def confirm_destroy
+    redirect_to root_path unless current_user.id.to_s == params[:user_id]
+  end
+
   def destroy
+    if current_user.id.to_s == params[:user_id]
+
+    else
+
+    end
   end
 
   private

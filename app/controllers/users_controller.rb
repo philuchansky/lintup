@@ -44,7 +44,6 @@ class UsersController < ApplicationController
 
   def confirm_destroy
     redirect_to root_path unless user_id_is_params_id?
-
   end
 
   def destroy
