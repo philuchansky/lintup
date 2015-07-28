@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
 
   has_many :snippets
+  has_many :comments
 end
