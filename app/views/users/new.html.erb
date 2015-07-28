@@ -1,7 +1,10 @@
+<h1>Create An Account:</h1>
+
 <%= form_for @user do |f| %>
 	First Name: <%= f.text_field :fname %><br>
 	Last Name: <%= f.text_field :lname %><br>
 	Email: <%= f.text_field :email %><br>
+	GitHub Username: <%= f.text_field :github_username %><br>
 	Username: <%= f.text_field :username %><br>
 	Password: <%= f.password_field :password %><br>
 	Confirm Password: <%= f.password_field :password_confirmation %><br>
