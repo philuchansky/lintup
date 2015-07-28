@@ -30,6 +30,13 @@ class SnippetsController < ApplicationController
   end
 
   def update
+    @snippet = Snippet.find(params[:id])
+    if @snippet.update_attributes(snippet_params)
+      redirect_to user_snippet_path
+    else
+      redirect_to 'edit'
+    end
+
   end
 
   def destroy
