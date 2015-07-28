@@ -53,9 +53,11 @@ class SnippetsController < ApplicationController
 
   def destroy
     if current_user.id.to_s == params[:user_id]
-
+      @snippet = Snippet.find(params[:id])
+      @snippet.destroy
+      redirect_to root_path
     else
-
+      redirect_to root_path
     end
   end
 
