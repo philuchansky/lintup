@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :snippets
   end
 
+  resources :comments
+
   ### SESSIONS ###
   get '/logout' => 'sessions#destroy'
   resources :sessions, only: [:new, :create, :destroy]
