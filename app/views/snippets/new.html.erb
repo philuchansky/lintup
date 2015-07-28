@@ -1,2 +1,7 @@
-<h1>Snippets#new</h1>
-<p>Find me in app/views/snippets/new.html.erb</p>
+<h1>Create New Snippet:</h1>
+
+<%= form_for @snippet do |f| %>
+	Title: <%= f.text_field :title %><br>
+	Snippet: <%= f.text_area :content %>
+	<%= f.submit 'Add Snippet' %>
+<% end %>

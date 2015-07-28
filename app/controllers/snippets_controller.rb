@@ -12,9 +12,16 @@ class SnippetsController < ApplicationController
   end
 
   def new
+    @snippet = Snippet.new
   end
 
   def create
+    @snippet = Snippet.new(snippet_params)
+    if @snippet.save
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -24,5 +31,10 @@ class SnippetsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def snippet_params
+    params.require(:snippet).permit(:title,:content)
   end
 end
