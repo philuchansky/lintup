@@ -26,6 +26,7 @@ class SnippetsController < ApplicationController
   end
 
   def edit
+    @snippet = Snippet.find(params[:id])
   end
 
   def update

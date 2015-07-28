@@ -1,2 +1,7 @@
-<h1>Snippets#edit</h1>
-<p>Find me in app/views/snippets/edit.html.erb</p>
+<h1>Edit Snippet:</h1>
+<%= form_for(@snippet, url: new_user_snippet_path) do |f| %>
+    Title: <%= f.text_field :title, value: @snippet.title %><br>
+    Language: <%= f.text_field :language, value: @snippet.language %>
+    Snippet: <%= f.text_area :content, value: @snippet.content %>
+    <%= f.submit 'Add Snippet' %>
+<% end %>

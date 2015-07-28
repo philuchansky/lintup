@@ -5,4 +5,5 @@
 	<h2><%= link_to s.title, user_snippet_path(s.user.id,s.id) %> (<%= s.language %>)</h2>
 	<h3>By: <%= link_to s.user.username, user_path(s.user) %></h3>
 	<textarea disabled><%= s.content %></textarea>
+	<%= link_to 'Edit Snippet', edit_user_snippet_path(s.user.id,s.id) %>
 <% end %>
