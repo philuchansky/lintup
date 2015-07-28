@@ -10,7 +10,7 @@
 <header>
 	<div style="text-align:right">
 	    <% if logged_in? %>
-	        <%= link_to 'Log Out', logout_path %>
+	        <%= link_to 'Account Settings', "/users/#{current_user.id}/edit" %> | <%= link_to 'Log Out', logout_path %> | <%= "#{current_user.fname} #{current_user.lname}" %>
 	    <% else %>
 	        <%= link_to 'Sign In', new_session_path %> | <%= link_to 'Create Account', new_user_url %>
 	    <% end %>
