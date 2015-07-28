@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #root 'snippets#index'
+  root 'snippets#index_global'
   ### USERS
   get '/users/:id/delete' => 'users#confirm_destroy', as: :delete_user
   get '/users/:id/confirm_delete' => 'users#destroy', as: :confirm_delete_user
