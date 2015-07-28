@@ -8,5 +8,5 @@
     Username: <%= f.text_field :username, value: @user.username %><br>
     Update Password: <%= f.password_field :password %><br>
     Confirm New Password: <%= f.password_field :password_confirmation %><br>
-    <%= f.submit 'Update Account' %> | <%= link_to 'Cancel', user_path %>
+    <%= f.submit 'Update Account' %> | <%= link_to 'Cancel', user_path %> | <%= link_to 'Delete Account', delete_user_path %>
 <% end %>
