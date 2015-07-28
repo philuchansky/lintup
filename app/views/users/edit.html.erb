@@ -1,0 +1,12 @@
+<h1>Create An Account:</h1>
+
+<%= form_for @user do |f| %>
+    First Name: <%= f.text_field :fname, value: @user.fname %><br>
+    Last Name: <%= f.text_field :lname, value: @user.lname %><br>
+    Email: <%= f.text_field :email, value: @user.email %><br>
+    GitHub Username: <%= f.text_field :github_username, value: @user.github_username %><br>
+    Username: <%= f.text_field :username, value: @user.username %><br>
+    Update Password: <%= f.password_field :password %><br>
+    Confirm New Password: <%= f.password_field :password_confirmation %><br>
+    <%= f.submit 'Update Account' %>
+<% end %>
