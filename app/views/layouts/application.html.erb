@@ -11,7 +11,7 @@
 	<%= link_to 'Home', root_path %>
 	<div style="text-align:right">
 	    <% if logged_in? %>
-	        <%= link_to 'Add Snippet', new_user_snippet_path(current_user) %> | <%= link_to 'Account Settings', "/users/#{current_user.id}/edit" %> | <%= link_to 'Log Out', logout_path %> | <%= link_to "#{current_user.fname} #{current_user.lname}", user_path(current_user) %>
+	        <%= link_to 'Add Snippet', new_snippet_path %> | <%= link_to 'Account Settings', "/users/#{current_user.id}/edit" %> | <%= link_to 'Log Out', logout_path %> | <%= link_to "#{current_user.fname} #{current_user.lname}", user_path(current_user) %>
 	    <% else %>
 	        <%= link_to 'Sign In', new_session_path %> | <%= link_to 'Create Account', new_user_url %>
 	    <% end %>
