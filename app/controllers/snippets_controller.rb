@@ -22,7 +22,7 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.new(snippet_params)
     @snippet.user = current_user
     if @snippet.save
-      redirect_to root_path
+      redirect_to user_path(@snippet.user)
     else
       redirect_to root_path
     end
