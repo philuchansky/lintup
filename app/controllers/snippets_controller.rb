@@ -29,8 +29,9 @@ class SnippetsController < ApplicationController
   end
 
   def edit
-    if current_user.id.to_s == params[:user_id].to_s
     @snippet = Snippet.find(params[:id])
+    if current_user.id == @snippet.user.id
+
     else
       redirect_to root_path
     end
@@ -40,7 +41,7 @@ class SnippetsController < ApplicationController
     if current_user.id.to_s == params[:user_id].to_s
       @snippet = Snippet.find(params[:id])
       if @snippet.update_attributes(snippet_params)
-        redirect_to user_snippet_path
+        redirect_to snippet_path
       else
         redirect_to 'edit'
       end
