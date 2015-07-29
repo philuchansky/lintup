@@ -49,9 +49,10 @@ class UsersController < ApplicationController
   def destroy
     if user_id_is_params_id?
       @user = User.find(params[:id])
+
       @user.snippets.destroy
       @user.destroy
-      redirect_to root_path
+      redirect_to logout_path
     else
       redirect_to root_path
     end

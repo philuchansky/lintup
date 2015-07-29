@@ -1,7 +1,6 @@
 class SnippetsController < ApplicationController
   before_action :authorize, only: [:new,:create,:edit,:update,:destroy]
 
-
   def index
     @user = User.find(params[:user_id])
   end
@@ -49,7 +48,7 @@ class SnippetsController < ApplicationController
   end
 
   def confirm_destroy
-    # @snippet = Snippet
+    @user= Snippet.find(params[:id]).user
     redirect_to root_path unless current_user.id == Snippet.find(params[:id]).user.id
   end
 
