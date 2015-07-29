@@ -1,8 +1,16 @@
 class CommentsController < ApplicationController
-  def create
-    @comment = Comment.new(comment_params)
-    if @comment.save
 
+  def new
+    @comment = Comment.new
+  end
+
+  def create
+    @snippet = Snippet.find(params[:id])
+    @comment = Comment.new(comment_params)
+    @comment.user = User.find(current_user.id)
+    @comment.snippet = Snippet.find(params[:id])
+    if @comment.save
+      redirect_to user_snippet_path(current_user.id,params[:id])
     else
 
     end

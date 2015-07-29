@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     resources :snippets
   end
 
-  resources :comments
+  ### COMMENTS ###
+  post '/users/:user_id/snippets/:id' => 'comments#create'
+
+  # resources :comments
 
   ### SESSIONS ###
   get '/logout' => 'sessions#destroy'
