@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment.user = User.find(current_user.id)
     @comment.snippet = Snippet.find(params[:id])
     if @comment.save
-      redirect_to user_snippet_path(current_user.id,params[:id])
+      redirect_to snippet_path(params[:id])
     else
 
     end
