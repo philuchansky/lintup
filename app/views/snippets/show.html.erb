@@ -1,23 +1,27 @@
 <h1>Snippet Title: <%= @snippet.title %> | by <%= @snippet.user.username %></h1>
 <textarea disabled><%= @snippet.content %></textarea>
-<% if logged_in? && current_user.id.to_s == @snippet.user.id.to_s %>
-	<%= link_to 'Edit', edit_snippet_path %> | <%= link_to 'Delete', delete_snippet_path(@snippet.id) %>
+<% if logged_in? %>
+    <% if current_user.id == @snippet.user.id %>
+        <%= link_to 'Edit', edit_snippet_path %> | <%= link_to 'Delete', delete_snippet_path(@snippet.id) %>
+    <% else %>
+        <a href="#">Like</a>
+    <% end %>
 <% end %>
 
 <hr>
 Comments: <%= @snippet.comments.count %>
 
 <% @snippet.comments.each do |c| %>
-	<div class="comment">
-		<hr>
-		<h4>From: <%= c.user.username %></h4>
-		<p>Comment: <%= c.body %></p>
-	</div>
+    <div class="comment">
+        <hr>
+        <h4>From: <%= c.user.username %></h4>
+        <p>Comment: <%= c.body %></p>
+    </div>
 <% end %>
 
 
 <%= form_for(@comment, url: snippet_path(@snippet.id)) do |f|%>
-	Leave A Comment:<br>
-	<%= f.text_area :body %><br>
-	<%= f.submit 'Post Comment' %>
+    Leave A Comment:<br>
+    <%= f.text_area :body %><br>
+    <%= f.submit 'Post Comment' %>
 <% end %>
