@@ -6,3 +6,18 @@
 		<textarea disabled><%= s.content %></textarea>
 	</div>
 <% end %>
+
+
+<script>
+	$(function(){
+		$.each($('textarea'), function( i, val ) {
+			var myTextArea = val;
+			var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
+				lineNumbers: true,
+				theme: 'monokai',
+				lineWrapping: true,
+				readOnly: true
+			});
+		});
+	})
+</script>

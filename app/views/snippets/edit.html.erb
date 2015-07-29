@@ -5,3 +5,15 @@
     Snippet: <%= f.text_area :content, value: @snippet.content %>
     <%= f.submit 'Update Snippet' %>
 <% end %>
+
+<script>
+	$(function(){
+		var myTextArea = document.getElementById('snippet_content');
+		var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
+			lineNumbers: true,
+			theme: 'monokai',
+			lineWrapping: true
+			//readOnly: true
+		});
+	})
+</script>
