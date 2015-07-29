@@ -1,5 +1,5 @@
 <h1>Edit Snippet:</h1>
-<%= form_for(@snippet, url: user_snippet_path) do |f| %>
+<%= form_for @snippet do |f| %>
     Title: <%= f.text_field :title, value: @snippet.title %><br>
     Language: <%= f.text_field :language, value: @snippet.language %>
     Snippet: <%= f.text_area :content, value: @snippet.content %>
