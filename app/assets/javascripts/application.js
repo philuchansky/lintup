@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require codemirror
+//= require codemirror/modes/ruby
+//= require codemirror/keymaps/sublime
 //= require_tree .

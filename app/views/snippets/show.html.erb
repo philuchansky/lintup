@@ -1,5 +1,5 @@
 <h1>Snippet Title: <%= @snippet.title %> | by <%= @snippet.user.username %></h1>
-<textarea disabled><%= @snippet.content %></textarea>
+<textarea disabled id="snippet"><%= @snippet.content %></textarea>
 <% if logged_in? %>
     <% if current_user.id == @snippet.user.id %>
         <%= link_to 'Edit', edit_snippet_path %> | <%= link_to 'Delete', delete_snippet_path(@snippet.id) %>
@@ -30,3 +30,16 @@ Comments: <%= @snippet.comments.count %>
     <%= f.text_area :body %><br>
     <%= f.submit 'Post Comment' %>
 <% end %>
+
+<script>
+	$(function(){
+		var myTextArea = document.getElementById('snippet');
+		var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
+			lineNumbers: true,
+			theme: 'monokai',
+			lineWrapping: true,
+			readOnly: true
+		});
+//		console.log('jquery, yay!')
+	})
+</script>
