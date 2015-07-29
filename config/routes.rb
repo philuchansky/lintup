@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get '/users/:id/delete' => 'users#confirm_destroy', as: :delete_user
   get '/users/:id/confirm_delete' => 'users#destroy', as: :confirm_delete_user
   get '/snippets' => 'snippets#index_global'
-  post '/users/:user_id/snippets/new' => 'snippets#create'
   get '/snippets/:id/delete' => 'snippets#confirm_destroy', as: :delete_snippet
   get '/snippets/:id/confirm_delete' => 'snippets#destroy', as: :confirm_delete_snippet
   resources :users, except: :destroy do

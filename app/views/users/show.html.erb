@@ -20,7 +20,7 @@ User ID Param: <%= params[:id] %>
     <div class="snippet">
 	    <h3><%= link_to s.title, snippet_path(s.id) %></h3>
 
-	    <textarea disabled><%= s.title %></textarea>
+	    <textarea disabled><%= s.content %></textarea>
         <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
     </div>
 <% end %>

@@ -56,7 +56,7 @@ class SnippetsController < ApplicationController
     @snippet = Snippet.find(params[:id])
     if current_user.id == @snippet.user.id
       @snippet.destroy
-      redirect_to root_path
+      redirect_to user_path(@snippet.user)
     else
       redirect_to root_path
     end
