@@ -19,9 +19,23 @@ User ID Param: <%= params[:id] %>
 		<hr>
     <div class="snippet">
 	    <h3><%= link_to s.title, snippet_path(s.id) %></h3>
+	    <div>Likes: <%= s.likes.count %></div>
 
 	    <textarea disabled><%= s.content %></textarea>
-        <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
+
+        <% if logged_in? %>
+            <% if current_user.id == s.user.id %>
+                <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
+            <% else %>
+                <% if current_user.already_likes?(s) %>
+                    <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: s.id %>
+                <% else %>
+                    <%= link_to 'Like', controller: 'likes', action: 'create', id: s.id %>
+                <% end %>
+            <% end %>
+        <% end %>
+
+
     </div>
 <% end %>
 </div>
