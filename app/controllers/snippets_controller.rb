@@ -49,12 +49,13 @@ class SnippetsController < ApplicationController
   end
 
   def confirm_destroy
-    redirect_to root_path unless current_user.id.to_s == params[:user_id]
+    # @snippet = Snippet
+    redirect_to root_path unless current_user.id == Snippet.find(params[:id]).user.id
   end
 
   def destroy
-    if current_user.id.to_s == params[:user_id]
-      @snippet = Snippet.find(params[:id])
+    @snippet = Snippet.find(params[:id])
+    if current_user.id == @snippet.user.id
       @snippet.destroy
       redirect_to root_path
     else
