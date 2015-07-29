@@ -1,7 +1,4 @@
 class LikesController < ApplicationController
-  def new
-  end
-
   def create
     @snippet = Snippet.find(params[:id])
 

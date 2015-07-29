@@ -23,9 +23,8 @@ Rails.application.routes.draw do
   # resources :comments
 
   ### LIKES ###
-  # resources :likes, only: [:new,:create,:destroy], as: :like
-  get '/likes' => 'likes#create'
-  get '/unlikes' => 'likes#destroy'
+  get '/like' => 'likes#create'
+  get '/unlike' => 'likes#destroy'
 
   ### SESSIONS ###
   get '/logout' => 'sessions#destroy', as: :logout
