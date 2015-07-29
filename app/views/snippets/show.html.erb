@@ -1,7 +1,7 @@
 <h1>Snippet Title: <%= @snippet.title %> | by <%= @snippet.user.username %></h1>
 <textarea disabled><%= @snippet.content %></textarea>
-<% if logged_in? && current_user.id.to_s == params[:user_id].to_s %>
-	<%= link_to 'Edit', edit_user_snippet_path %> | <%= link_to 'Delete', delete_snippet_path(@snippet.user.id,@snippet.id) %>
+<% if logged_in? && current_user.id.to_s == @snippet.user.id.to_s %>
+	<%= link_to 'Edit', edit_snippet_path %> | <%= link_to 'Delete', delete_snippet_path(@snippet.id) %>
 <% end %>
 
 <hr>
@@ -16,7 +16,7 @@ Comments: <%= @snippet.comments.count %>
 <% end %>
 
 
-<%= form_for(@comment, url: user_snippet_path) do |f|%>
+<%= form_for(@comment, url: snippet_path(@snippet.id)) do |f|%>
 	Leave A Comment:<br>
 	<%= f.text_area :body %><br>
 	<%= f.submit 'Post Comment' %>
