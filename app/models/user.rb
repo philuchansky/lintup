@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   has_many :snippets, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  def already_likes?(snippet)
+    self.likes.where("snippet_id = #{snippet.id}").count > 0
+  end
 end

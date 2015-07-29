@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   #usage: redirect if user tries to edit/delete content/account that doesn't belong to them
+  #TODO: refactor into one-argument method to reuse application-wide
   def user_id_is_params_id?
     current_user.id.to_s == params[:id].to_s
   end

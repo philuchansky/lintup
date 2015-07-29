@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  # get 'likes/new'
-  #
-  # get 'likes/create'
-  #
-  # get 'likes/destroy'
+
 
   root 'snippets#index_global'
 
@@ -24,8 +20,12 @@ Rails.application.routes.draw do
   resources :snippets, except: :index
   ### COMMENTS ###
   post '/snippets/:id' => 'comments#create'
-
   # resources :comments
+
+  ### LIKES ###
+  # resources :likes, only: [:new,:create,:destroy], as: :like
+  get '/likes' => 'likes#create'
+  get '/unlikes' => 'likes#destroy'
 
   ### SESSIONS ###
   get '/logout' => 'sessions#destroy', as: :logout
