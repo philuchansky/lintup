@@ -1,6 +1,6 @@
 <h1>Create New Snippet:</h1>
 
-<%= form_for(@snippet, url: new_user_snippet_path) do |f| %>
+<%= form_for(@snippet, url: new_snippet_path) do |f| %>
 	Title: <%= f.text_field :title %><br>
 	Language: <%= f.text_field :language%>
 	Snippet: <%= f.text_area :content %>
