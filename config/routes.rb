@@ -6,14 +6,19 @@ Rails.application.routes.draw do
   get '/users/:id/confirm_delete' => 'users#destroy', as: :confirm_delete_user
   get '/snippets' => 'snippets#index_global'
   post '/users/:user_id/snippets/new' => 'snippets#create'
-  get '/users/:user_id/snippets/:id/delete' => 'snippets#confirm_destroy', as: :delete_snippet
-  get '/users/:user_id/snippets/:id/confirm_delete' => 'snippets#destroy', as: :confirm_delete_snippet
+  get '/snippets/:id/delete' => 'snippets#confirm_destroy', as: :delete_snippet
+  get '/snippets/:id/confirm_delete' => 'snippets#destroy', as: :confirm_delete_snippet
   resources :users, except: :destroy do
-    resources :snippets
+    resources :snippets, only: :index
   end
 
+  # test post snippet
+  post '/snippets/new' => 'snippets#create'
+  #
+
+  resources :snippets, except: :index
   ### COMMENTS ###
-  post '/users/:user_id/snippets/:id' => 'comments#create'
+  post '/snippets/:id' => 'comments#create'
 
   # resources :comments
 
