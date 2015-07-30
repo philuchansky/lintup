@@ -36,49 +36,57 @@
 <div class="well">
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1">
-            <div class="snippets">
-                <% @user.snippets.order("created_at DESC").each do |s| %>
-                    <div class="snippet">
-                        <div class="row">
-	                        <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm user-posted">
-	                            <div class="useravatar">
-	                                <%= image_tag @user.gravatar_url %>
-	                            </div>
-	                            <small><%= time_ago_in_words(s.created_at) %></small>
-	                            <div>Comments: <%= s.comments.count %></div>
-	                            <div>Likes: <%= s.likes.count %></div>
+	        <% if @user.snippets.count > 0 %>
+	            <div class="snippets">
+	                <% @user.snippets.order("created_at DESC").each do |s| %>
+	                    <div class="snippet">
+	                        <div class="row">
+		                        <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm user-posted">
+		                            <div class="useravatar">
+		                                <%= image_tag @user.gravatar_url %>
+		                            </div>
+		                            <small><%= time_ago_in_words(s.created_at) %></small>
+		                            <div>Comments: <%= s.comments.count %></div>
+		                            <div>Likes: <%= s.likes.count %></div>
+		                        </div>
+		                        <div class="col-md-7">
+		                            <h3><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %>: <%= link_to s.title, snippet_path(s.id) %></h3>
+		                            <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
+		                            <% if logged_in? %>
+		                                <% if current_user.id == s.user.id %>
+		                                    <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
+		                                <% else %>
+		                                    <% if current_user.already_likes?(s) %>
+		                                        <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: s.id %>
+		                                    <% else %>
+		                                        <%= link_to 'Like', controller: 'likes', action: 'create', id: s.id %>
+		                                    <% end %>
+		                                <% end %>
+		                            <% end %>
+		                        </div>
 	                        </div>
-	                        <div class="col-md-7">
-	                            <h3><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %>: <%= link_to s.title, snippet_path(s.id) %></h3>
-	                            <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
-	                            <% if logged_in? %>
-	                                <% if current_user.id == s.user.id %>
-	                                    <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
-	                                <% else %>
-	                                    <% if current_user.already_likes?(s) %>
-	                                        <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: s.id %>
-	                                    <% else %>
-	                                        <%= link_to 'Like', controller: 'likes', action: 'create', id: s.id %>
-	                                    <% end %>
-	                                <% end %>
-	                            <% end %>
-	                        </div>
-                        </div>
-                        <script>
-	                        $(function(){
-		                        var textArea = document.getElementById('snippet-<%= s.id %>');
-		                        var myCodeMirror = CodeMirror.fromTextArea(textArea, {
-			                        lineNumbers: true,
-			                        theme: 'monokai',
-			                        lineWrapping: true,
-			                        readOnly: true,
-			                        mode: '<%= s.language %>'
-		                        });
-	                        })
-                        </script>
-                    </div>
-                <% end %>
-            </div>
+	                        <script>
+		                        $(function(){
+			                        var textArea = document.getElementById('snippet-<%= s.id %>');
+			                        var myCodeMirror = CodeMirror.fromTextArea(textArea, {
+				                        lineNumbers: true,
+				                        theme: 'monokai',
+				                        lineWrapping: true,
+				                        readOnly: true,
+				                        mode: '<%= s.language %>'
+			                        });
+		                        })
+	                        </script>
+	                    </div>
+	                <% end %>
+	            </div>
+	        <% else %>
+                <div class="jumbotron">
+                    <h1>Welcome!</h1>
+                    <p>It's time to post your first snippet! When you post a code snippet, it'll show up here on your profile.</p>
+                    <p><%= link_to 'Add A Snippet!', new_snippet_path, class: 'btn btn-primary btn-lg' %></p>
+                </div>
+            <% end %>
         </div>
         <div class="tab-pane fade in" id="tab2">
 	        <% if @user.likes.count > 0 %>
