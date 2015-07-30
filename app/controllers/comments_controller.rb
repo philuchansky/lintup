@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   def new
     @comment = Comment.new
   end
@@ -14,6 +13,18 @@ class CommentsController < ApplicationController
     else
 
     end
+  end
+
+  def show
+
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+
+    #only allow commenter OR owner of post that has the comment to delete comment:
+    @comment.destroy if current_user.id == @comment.user.id || current_user.id == @comment.snippet.user.id
+    redirect_to params[:call_back_url]
   end
 
   private
