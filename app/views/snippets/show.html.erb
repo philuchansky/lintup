@@ -22,15 +22,21 @@ Comments: <%= @snippet.comments.count %>
     <div class="comment">
         <hr>
         <h4>From: <%= c.user.username %></h4>
+	    <h5>Comment ID: <%= c.id %></h5>
         <p>Comment: <%= c.body %></p>
+	    <%= link_to 'Delete', delete_comment_path(c, :call_back_url => request.original_url) %>
     </div>
 <% end %>
 
-
-<%= form_for(@comment, url: snippet_path(@snippet.id)) do |f|%>
-    Leave A Comment:<br>
-    <%= f.text_area :body %><br>
-    <%= f.submit 'Post Comment' %>
+<hr>
+<% if logged_in? %>
+	<%= form_for(@comment, url: snippet_path(@snippet.id)) do |f|%>
+	    Leave A Comment:<br>
+	    <%= f.text_area :body %><br>
+	    <%= f.submit 'Post Comment' %>
+	<% end %>
+<% else %>
+	<%= link_to 'Create an account', new_user_path %> to leave comments.
 <% end %>
 
 <script>
