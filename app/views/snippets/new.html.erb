@@ -2,7 +2,20 @@
 
 <%= form_for(@snippet, url: new_snippet_path) do |f| %>
 	Title: <%= f.text_field :title %><br>
-	Language: <%= f.text_field :language%>
+	Language: <%= select_tag 'snippet[language]', options_for_select(language_modes.collect {|m| [ m[:name],m[:language_mode]] }) %>
 	Snippet: <%= f.text_area :content %>
 	<%= f.submit 'Add Snippet' %>
 <% end %>
+
+<script>
+	$(function(){
+		var myTextArea = document.getElementById('snippet_content');
+		var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
+			lineNumbers: true,
+			theme: 'monokai',
+			lineWrapping: true,
+			languageMode: 'ruby'
+//			readOnly: true
+		});
+	})
+</script>

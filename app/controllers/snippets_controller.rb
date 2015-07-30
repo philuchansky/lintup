@@ -30,6 +30,7 @@ class SnippetsController < ApplicationController
 
   def edit
     @snippet = Snippet.find(params[:id])
+    @language_mode = language_modes.find {|language| language[:language_mode] == @snippet.language}[:language_mode]
     redirect_to root_path unless current_user.id == @snippet.user.id
   end
 

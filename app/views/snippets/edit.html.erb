@@ -1,7 +1,7 @@
 <h1>Edit Snippet:</h1>
 <%= form_for @snippet do |f| %>
     Title: <%= f.text_field :title, value: @snippet.title %><br>
-    Language: <%= f.text_field :language, value: @snippet.language %>
+    Language: <%= select_tag 'snippet[language]', options_for_select(language_modes.collect {|m| [ m[:name],m[:language_mode]] },@language_mode) %>
     Snippet: <%= f.text_area :content, value: @snippet.content %>
     <%= f.submit 'Update Snippet' %>
 <% end %>
@@ -9,11 +9,16 @@
 <script>
 	$(function(){
 		var myTextArea = document.getElementById('snippet_content');
+		var $snippetLanguage = $('#snippet_language');
 		var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
 			lineNumbers: true,
 			theme: 'monokai',
 			lineWrapping: true
 			//readOnly: true
+		});
+		myCodeMirror.setOption("mode","ruby");
+		$snippetLanguage.change(function() {
+			myCodeMirror.setOption("mode", $(this).val());
 		});
 	})
 </script>
