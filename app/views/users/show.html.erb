@@ -19,6 +19,7 @@ User ID Param: <%= params[:id] %>
 		<hr>
     <div class="snippet">
 	    <h3><%= link_to s.title, snippet_path(s.id) %></h3>
+	    <h5><%= time_ago_in_words(s.created_at) %></h5>
 	    <h4>Language: <%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></h4>
 	    <div>Likes: <%= s.likes.count %></div>
 
