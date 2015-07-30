@@ -10,12 +10,15 @@
 <script>
 	$(function(){
 		var myTextArea = document.getElementById('snippet_content');
+		var $snippetLanguage = $('#snippet_language');
 		var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
 			lineNumbers: true,
 			theme: 'monokai',
 			lineWrapping: true,
-			languageMode: 'ruby'
-//			readOnly: true
+			mode: $snippetLanguage.val()
+		});
+		$snippetLanguage.change(function() {
+			myCodeMirror.setOption("mode", $(this).val());
 		});
 	})
 </script>

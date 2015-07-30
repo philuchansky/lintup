@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require codemirror
+//= require codemirror/addons/edit/matchbrackets.js
+//= require codemirror/addons/mode/overlay.js
+//= require codemirror/addons/mode/multiplex.js
+//= require codemirror/modes/clike
 //= require codemirror/modes/coffeescript
 //= require codemirror/modes/css
 //= require codemirror/modes/django
@@ -27,7 +31,8 @@
 //= require codemirror/modes/python
 //= require codemirror/modes/ruby
 //= require codemirror/modes/sass
-//= require codemirror/modes/sql
+//= require codemirror/modes/xml
 //= require codemirror/modes/yaml
 //= require codemirror/keymaps/sublime
 //= require_tree .
+

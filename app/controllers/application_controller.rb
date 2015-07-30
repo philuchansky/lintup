@@ -40,7 +40,6 @@ class ApplicationController < ActionController::Base
         {language_mode: 'python', name: 'Python'},
         {language_mode: 'ruby', name: 'Ruby'},
         {language_mode: 'sass', name: 'Sass'},
-        {language_mode: 'sql', name: 'SQL'},
         {language_mode: 'yaml', name: 'YAML'}
     ]
   end

@@ -3,21 +3,23 @@
 		<hr>
 	    <h3><%= link_to s.title, snippet_path(s.id) %></h3>
 		<h4>By: <%= link_to s.user.username, user_path(s.user) %></h4>
-		<textarea disabled><%= s.content %></textarea>
+		<h5>Language: <%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></h5>
+		<textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
 	</div>
+
+    <script>
+	    $(function(){
+		    var textArea = document.getElementById('snippet-<%= s.id %>');
+		    var myCodeMirror = CodeMirror.fromTextArea(textArea, {
+			    lineNumbers: true,
+			    theme: 'monokai',
+			    lineWrapping: true,
+			    readOnly: true,
+			    mode: '<%= s.language %>'
+		    });
+	    })
+    </script>
+
 <% end %>
 
 
-<script>
-	$(function(){
-		$.each($('textarea'), function( i, val ) {
-			var myTextArea = val;
-			var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
-				lineNumbers: true,
-				theme: 'monokai',
-				lineWrapping: true,
-				readOnly: true
-			});
-		});
-	})
-</script>

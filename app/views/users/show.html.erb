@@ -19,9 +19,10 @@ User ID Param: <%= params[:id] %>
 		<hr>
     <div class="snippet">
 	    <h3><%= link_to s.title, snippet_path(s.id) %></h3>
+	    <h4>Language: <%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></h4>
 	    <div>Likes: <%= s.likes.count %></div>
 
-	    <textarea disabled><%= s.content %></textarea>
+	    <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
 
         <% if logged_in? %>
             <% if current_user.id == s.user.id %>
@@ -37,19 +38,18 @@ User ID Param: <%= params[:id] %>
 
 
     </div>
+    <script>
+	    $(function(){
+		    var textArea = document.getElementById('snippet-<%= s.id %>');
+		    var myCodeMirror = CodeMirror.fromTextArea(textArea, {
+			    lineNumbers: true,
+			    theme: 'monokai',
+			    lineWrapping: true,
+			    readOnly: true,
+			    mode: '<%= s.language %>'
+		    });
+	    })
+    </script>
 <% end %>
 </div>
 
-<script>
-	$(function(){
-		$.each($('textarea'), function( i, val ) {
-			var myTextArea = val;
-			var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
-				lineNumbers: true,
-				theme: 'monokai',
-				lineWrapping: true,
-				readOnly: true
-			});
-		});
-	})
-</script>
