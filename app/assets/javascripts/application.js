@@ -27,6 +27,7 @@
 //= require codemirror/modes/htmlembedded
 //= require codemirror/modes/htmlmixed
 //= require codemirror/modes/javascript
+//= require codemirror/modes/markdown
 //= require codemirror/modes/perl
 //= require codemirror/modes/php
 //= require codemirror/modes/python
