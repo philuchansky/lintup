@@ -72,6 +72,9 @@
   color: #FFF;
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  display:inline-block;
+  clear:both;
+  margin-bottom:10px
 }
 .card.hovercard .card-info {
   color: #737373;
