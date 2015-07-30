@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   def already_likes?(snippet)
     self.likes.where("snippet_id = #{snippet.id}").count > 0
   end
+
+  include Gravtastic
+  is_gravtastic :size => 250,
+                :default => 'retro'
 end
