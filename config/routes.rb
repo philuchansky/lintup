@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   resources :snippets, except: :index
   ### COMMENTS ###
   post '/snippets/:id' => 'comments#create'
+
+  get '/comments/:id' => 'comments#show', as: :comment
+  get '/comments/:id/delete' => 'comments#destroy', as: :delete_comment
   # resources :comments
 
   ### LIKES ###
