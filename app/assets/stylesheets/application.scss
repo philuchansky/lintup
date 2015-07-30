@@ -18,3 +18,11 @@
  */
 @import "bootstrap-sprockets";
 @import 'bootswatch';
+
+.header-nav {
+  border-radius:0!important
+}
+
+.navbar-brand img {
+  width:90px;
+}
