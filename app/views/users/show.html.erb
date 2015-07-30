@@ -81,49 +81,57 @@
             </div>
         </div>
         <div class="tab-pane fade in" id="tab2">
-            <div class="snippets">
-                <% @user.likes.order("created_at DESC").each do |l| %>
-                    <div class="snippet">
-                        <div class="row">
-                            <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm user-posted">
-                                <div class="useravatar">
-                                    <%= image_tag l.snippet.user.gravatar_url %>
-                                </div>
-                                <small><%= time_ago_in_words(l.snippet.created_at) %></small>
-                                <div>Comments: <%= l.snippet.comments.count %></div>
-                                <div>Likes: <%= l.snippet.likes.count %></div>
-                            </div>
-                            <div class="col-md-7">
-                                <h3><%= language_modes.find {|language| language[:language_mode] == l.snippet.language}[:name] %>: <%= link_to l.snippet.title, snippet_path(l.snippet.id) %></h3>
-                                <textarea disabled id="liked-snippet-<%= l.snippet.id %>"><%= l.snippet.content %></textarea>
-                                <% if logged_in? %>
-                                    <% if current_user.id == l.snippet.user.id %>
-                                        <%= link_to 'Edit', edit_snippet_path(l.snippet.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
-                                    <% else %>
-                                        <% if current_user.already_likes?(l.snippet) %>
-                                            <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: l.snippet.id %>
-                                        <% else %>
-                                            <%= link_to 'Like', controller: 'likes', action: 'create', id: l.snippet.id %>
-                                        <% end %>
-                                    <% end %>
-                                <% end %>
-                            </div>
-                        </div>
-                        <script>
-	                        $(function(){
-		                        var textArea = document.getElementById('liked-snippet-<%= l.snippet.id %>');
-		                        var myCodeMirror = CodeMirror.fromTextArea(textArea, {
-			                        lineNumbers: true,
-			                        theme: 'monokai',
-			                        lineWrapping: true,
-			                        readOnly: true,
-			                        mode: '<%= l.snippet.language %>'
-		                        });
-	                        })
-                        </script>
-                    </div>
-                <% end %>
-            </div>
+	        <% if @user.likes.count > 0 %>
+	            <div class="snippets">
+	                <% @user.likes.order("created_at DESC").each do |l| %>
+	                    <div class="snippet">
+	                        <div class="row">
+	                            <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm user-posted">
+	                                <div class="useravatar">
+	                                    <%= image_tag l.snippet.user.gravatar_url %>
+	                                </div>
+	                                <small><%= time_ago_in_words(l.snippet.created_at) %></small>
+	                                <div>Comments: <%= l.snippet.comments.count %></div>
+	                                <div>Likes: <%= l.snippet.likes.count %></div>
+	                            </div>
+	                            <div class="col-md-7">
+	                                <h3><%= language_modes.find {|language| language[:language_mode] == l.snippet.language}[:name] %>: <%= link_to l.snippet.title, snippet_path(l.snippet.id) %></h3>
+	                                <textarea disabled id="liked-snippet-<%= l.snippet.id %>"><%= l.snippet.content %></textarea>
+	                                <% if logged_in? %>
+	                                    <% if current_user.id == l.snippet.user.id %>
+	                                        <%= link_to 'Edit', edit_snippet_path(l.snippet.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
+	                                    <% else %>
+	                                        <% if current_user.already_likes?(l.snippet) %>
+	                                            <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: l.snippet.id %>
+	                                        <% else %>
+	                                            <%= link_to 'Like', controller: 'likes', action: 'create', id: l.snippet.id %>
+	                                        <% end %>
+	                                    <% end %>
+	                                <% end %>
+	                            </div>
+	                        </div>
+	                        <script>
+		                        $(function(){
+			                        var textArea = document.getElementById('liked-snippet-<%= l.snippet.id %>');
+			                        var myCodeMirror = CodeMirror.fromTextArea(textArea, {
+				                        lineNumbers: true,
+				                        theme: 'monokai',
+				                        lineWrapping: true,
+				                        readOnly: true,
+				                        mode: '<%= l.snippet.language %>'
+			                        });
+		                        })
+	                        </script>
+	                    </div>
+	                <% end %>
+	            </div>
+	        <% else %>
+                <div class="jumbotron">
+                    <h1>Add Some Favorites!</h1>
+                    <p>Browse other user's snippets. When you click 'Like' on a snippet, it'll show up here on your favorites tab.</p>
+                    <p><%= link_to 'Browse Snippets', root_path, class: 'btn btn-primary btn-lg' %></p>
+                </div>
+	        <% end %>
         </div>
     </div>
 </div>
