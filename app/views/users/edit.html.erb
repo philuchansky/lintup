@@ -1,12 +1,55 @@
-<h1>Edit Account:</h1>
-
-<%= form_for @user do |f| %>
-    First Name: <%= f.text_field :fname, value: @user.fname %><br>
-    Last Name: <%= f.text_field :lname, value: @user.lname %><br>
-    Email: <%= f.text_field :email, value: @user.email %><br>
-    GitHub Username: <%= f.text_field :github_username, value: @user.github_username %><br>
-    Username: <%= f.text_field :username, value: @user.username %><br>
-    Update Password: <%= f.password_field :password %><br>
-    Confirm New Password: <%= f.password_field :password_confirmation %><br>
-    <%= f.submit 'Update Account' %> | <%= link_to 'Cancel', user_path %> | <%= link_to 'Delete Account', delete_user_path %>
+<div class="vertical-form-spacer"></div>
+<%= form_for @user, :html => {class: 'new_user form-horizontal'} do |f| %>
+    <div class="row"><legend class="col-md-4 col-md-offset-4">Edit Your Account:</legend></div>
+    <fieldset>
+        <div class="form-group">
+            <%= f.label :fname, 'First Name', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.text_field :fname, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :lname, 'Last Name', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.text_field :lname, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :email, 'Email', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.text_field :email, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :github_username, 'GitHub Username', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.text_field :github_username, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :username, 'Username', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.text_field :username, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :password, 'Password', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.password_field :password, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= f.label :password_confirmation, 'Confirm Password', class: 'col-md-4 control-label' %>
+            <div class="col-md-5">
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5 col-md-offset-4">
+                <%= f.submit 'Update', class: 'btn btn-primary' %>
+                <%= link_to 'Cancel', user_path, class: 'btn btn-default' %>
+                <%= link_to 'Delete Account', delete_user_path, class: 'btn btn-danger pull-right' %>
+            </div>
+        </div>
+    </fieldset>
 <% end %>
