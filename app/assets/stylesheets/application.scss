@@ -26,3 +26,16 @@
 .navbar-brand img {
   width:90px;
 }
+
+//utility classes
+.vertical-form-spacer {
+  height:0;
+  margin-top:75px;
+}
+
+//media queries
+@media (max-width: 767px) {
+  .vertical-form-spacer {
+    display:none
+  }
+}
