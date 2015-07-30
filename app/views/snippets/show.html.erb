@@ -24,7 +24,9 @@ Comments: <%= @snippet.comments.count %>
         <h4>From: <%= c.user.username %></h4>
 	    <h5>Comment ID: <%= c.id %></h5>
         <p>Comment: <%= c.body %></p>
-	    <%= link_to 'Delete', delete_comment_path(c, :call_back_url => request.original_url) %>
+	    <% if current_user == c.user || current_user == @snippet.user %>
+	        <%= link_to 'Delete', delete_comment_path(c, :call_back_url => request.original_url) %>
+	    <% end %>
     </div>
 <% end %>
 
