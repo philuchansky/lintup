@@ -9,7 +9,7 @@
 <body>
 <!-- NavBar -->
 	<nav class="navbar navbar-default header-nav">
-	    <div class="container-fluid">
+	    <div class="container">
 	        <!-- Brand and toggle get grouped for better mobile display -->
 	        <div class="navbar-header">
 	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -53,13 +53,6 @@
 	</nav>
 	<!---->
 	<div class="container">
-	    <% if !logged_in? %>
-	        <div class="jumbotron">
-	            <h1>Start Snipping!</h1>
-	            <p>Lint_Up lets you discover and share your favorite code snippets. So what are you waiting for? Start snipping!</p>
-	            <p><%= link_to 'Create A Free Account', new_user_url, class: 'btn btn-primary btn-lg' %></p>
-	        </div>
-	    <% end %>
 	    <%= yield %>
 	</div>
 </body>
