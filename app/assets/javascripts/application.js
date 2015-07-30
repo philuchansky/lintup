@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require codemirror
 //= require codemirror/addons/edit/matchbrackets.js
 //= require codemirror/addons/mode/overlay.js
