@@ -13,10 +13,9 @@
 		var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
 			lineNumbers: true,
 			theme: 'monokai',
-			lineWrapping: true
-			//readOnly: true
+			lineWrapping: true,
+			mode: $snippetLanguage.val()
 		});
-		myCodeMirror.setOption("mode","ruby");
 		$snippetLanguage.change(function() {
 			myCodeMirror.setOption("mode", $(this).val());
 		});

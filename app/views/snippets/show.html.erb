@@ -39,7 +39,8 @@ Comments: <%= @snippet.comments.count %>
 			lineNumbers: true,
 			theme: 'monokai',
 			lineWrapping: true,
-			readOnly: true
+			readOnly: true,
+			mode: '<%= @snippet.language %>'
 		});
 	})
 </script>
