@@ -1,27 +1,22 @@
-<div class="col-xs-12">
     <div class="card hovercard">
         <div class="card-background">
-            <!--<img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">-->
-            <!-- http://lorempixel.com/850/280/people/9/ -->
             <%= image_tag @user.gravatar_url, class: 'card-bkimg' %>
-
-
         </div>
         <div class="useravatar">
             <%= image_tag @user.gravatar_url %>
         </div>
-        <div class="card-info"> <span class="card-title">Pamela Anderson</span>
+        <div class="card-info"><span class="card-title"><%= "#{@user.fname} #{@user.lname}"%></span>
 
         </div>
     </div>
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group">
-            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <button type="button" id="tab-snippets" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                 <div class="hidden-xs">Snippets</div>
             </button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <button type="button" id="tab-favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                 <div class="hidden-xs">Favorites</div>
             </button>
         </div>
@@ -31,7 +26,56 @@
     <div class="well">
         <div class="tab-content">
             <div class="tab-pane fade in active" id="tab1">
-                <h3>This is tab 1</h3>
+                <div class="snippets">
+                    <% @user.snippets.order("created_at DESC").each do |s| %>
+                        <div class="snippet">
+	                        <div class="row">
+		                        <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm user-posted">
+		                            <div class="useravatar">
+		                                <%= image_tag @user.gravatar_url %>
+		                            </div>
+		                            <small><%= time_ago_in_words(s.created_at) %></small>
+		                            <div>Comments: <%= s.comments.count %></div>
+		                            <div>Likes: <%= s.likes.count %></div>
+		                        </div>
+		                        <div class="col-md-7">
+		                            <h3><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %>: <%= link_to s.title, snippet_path(s.id) %></h3>
+		                            <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
+		                            <% if logged_in? %>
+		                                <% if current_user.id == s.user.id %>
+		                                    <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
+		                                <% else %>
+		                                    <% if current_user.already_likes?(s) %>
+		                                        <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: s.id %>
+		                                    <% else %>
+		                                        <%= link_to 'Like', controller: 'likes', action: 'create', id: s.id %>
+		                                    <% end %>
+		                                <% end %>
+		                            <% end %>
+		                        </div>
+	                        </div>
+                        </div>
+                        <script>
+	                        $(function(){
+		                        var textArea = document.getElementById('snippet-<%= s.id %>');
+		                        var myCodeMirror = CodeMirror.fromTextArea(textArea, {
+			                        lineNumbers: true,
+			                        theme: 'monokai',
+			                        lineWrapping: true,
+			                        readOnly: true,
+			                        mode: '<%= s.language %>'
+		                        });
+
+
+		                        $(".btn-pref .btn").click(function () {
+			                        $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+			                        // $(".tab").addClass("active"); // instead of this do the below
+			                        $(this).removeClass("btn-default").addClass("btn-primary");
+		                        });
+	                        })
+                        </script>
+                    <% end %>
+                </div>
             </div>
             <div class="tab-pane fade in" id="tab2">
                 <h3>This is tab 2</h3>
@@ -42,7 +86,6 @@
         </div>
     </div>
 
-</div>
 
 <h1><%= "#{@user.fname} #{@user.lname}"%></h1>
 <h2><%= @user.username %></h2>
@@ -58,50 +101,5 @@ User ID Param: <%= params[:id] %>
 <% end %>
 
 
-<div class="snippets">
-<% @user.snippets.order("created_at DESC").each do |s| %>
-		<hr>
-    <div class="snippet">
-	    <h3><%= link_to s.title, snippet_path(s.id) %></h3>
-	    <h5><%= time_ago_in_words(s.created_at) %></h5>
-	    <h4>Language: <%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></h4>
-	    <div>Likes: <%= s.likes.count %></div>
 
-	    <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
-
-        <% if logged_in? %>
-            <% if current_user.id == s.user.id %>
-                <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
-            <% else %>
-                <% if current_user.already_likes?(s) %>
-                    <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: s.id %>
-                <% else %>
-                    <%= link_to 'Like', controller: 'likes', action: 'create', id: s.id %>
-                <% end %>
-            <% end %>
-        <% end %>
-
-
-    </div>
-    <script>
-	    $(function(){
-		    var textArea = document.getElementById('snippet-<%= s.id %>');
-		    var myCodeMirror = CodeMirror.fromTextArea(textArea, {
-			    lineNumbers: true,
-			    theme: 'monokai',
-			    lineWrapping: true,
-			    readOnly: true,
-			    mode: '<%= s.language %>'
-		    });
-
-
-		    $(".btn-pref .btn").click(function () {
-			    $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-			    // $(".tab").addClass("active"); // instead of this do the below
-			    $(this).removeClass("btn-default").addClass("btn-primary");
-		    });
-	    })
-    </script>
-<% end %>
-</div>
 
