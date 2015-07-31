@@ -13,14 +13,14 @@
         <div class="row">
             <div class="col-md-2 hidden-xs hidden-sm user-posted">
                 <div class="useravatar">
-                    <%= image_tag s.user.gravatar_url %>
+                    <a href="<%= user_path(s.user) %>"><%= image_tag s.user.gravatar_url %></a>
                 </div>
                 <small><%= time_ago_in_words(s.created_at) %> ago</small>
                 <div>Comments: <%= s.comments.count %></div>
                 <div>Likes: <%= s.likes.count %></div>
             </div>
             <div class="col-md-10">
-                <h1><%= link_to s.title, snippet_path(s.id) %> <small><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></small></h1>
+                <h2><%= link_to s.title, snippet_path(s.id) %> <small><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></small></h2>
                 <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
                 <% if logged_in? %>
                     <% if current_user.id == s.user.id %>

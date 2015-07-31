@@ -45,6 +45,8 @@
 	</div>
 </div>
 
+
+<% if @snippet.comments.count > 0 %>
 <div class="row previous-comments">
     <div class="col-md-3 row-title">
         <h3>Previous Comments</h3>
@@ -72,6 +74,7 @@
         </div>
     <% end %>
 </div>
+<% end %>
 
 <script>
 	$(function(){
