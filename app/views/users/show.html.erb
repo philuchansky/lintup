@@ -41,7 +41,7 @@
 	                <% @user.snippets.order("created_at DESC").each do |s| %>
 	                    <div class="snippet">
 	                        <div class="row">
-		                        <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm user-posted">
+		                        <div class="col-md-2 hidden-xs hidden-sm user-posted">
 		                            <div class="useravatar">
 		                                <%= image_tag @user.gravatar_url %>
 		                            </div>
@@ -49,7 +49,7 @@
 		                            <div>Comments: <%= s.comments.count %></div>
 		                            <div>Likes: <%= s.likes.count %></div>
 		                        </div>
-		                        <div class="col-md-7">
+		                        <div class="col-md-10">
 		                            <h3><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %>: <%= link_to s.title, snippet_path(s.id) %></h3>
 		                            <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
 		                            <% if logged_in? %>
@@ -94,7 +94,7 @@
 	                <% @user.likes.order("created_at DESC").each do |l| %>
 	                    <div class="snippet">
 	                        <div class="row">
-	                            <div class="col-md-2 col-md-offset-1 hidden-xs hidden-sm user-posted">
+	                            <div class="col-md-2 hidden-xs hidden-sm user-posted">
 	                                <div class="useravatar">
 	                                    <%= image_tag l.snippet.user.gravatar_url %>
 	                                </div>
@@ -102,7 +102,7 @@
 	                                <div>Comments: <%= l.snippet.comments.count %></div>
 	                                <div>Likes: <%= l.snippet.likes.count %></div>
 	                            </div>
-	                            <div class="col-md-7">
+	                            <div class="col-md-10">
 	                                <h3><%= language_modes.find {|language| language[:language_mode] == l.snippet.language}[:name] %>: <%= link_to l.snippet.title, snippet_path(l.snippet.id) %></h3>
 	                                <textarea disabled id="liked-snippet-<%= l.snippet.id %>"><%= l.snippet.content %></textarea>
 	                                <% if logged_in? %>
