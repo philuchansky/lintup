@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to new_session_path
     else
+      flash[:danger] = 'Please confirm all fields!'
       redirect_to new_user_path
     end
   end
