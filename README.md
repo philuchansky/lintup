@@ -8,6 +8,8 @@ Users can sign up for a free account and immediately begin contributing code sni
 
 Snippets can be associated with a particular programming language, which would affect the syntax highlighting when creating, editing or viewing a snippet.
 
+### [Deployed On Heroku](https://fierce-sierra-7466.herokuapp.com)
+
 # First Iteration ERD
 
 ![First Iteration ERD](https://cloud.githubusercontent.com/assets/5580178/8899927/3a182092-33ef-11e5-8412-0e47fc9ef0d2.png)
