@@ -11,9 +11,11 @@
 			    <div class="card-info">
 			        <span class="card-title"><%= "#{@user.fname} #{@user.lname}"%></span>
 			        <div class="btn-group pull-right" role="group" aria-label="...">
-			            <a href="http://github.com/<%= @user.github_username %>" target="_blank" type="button" class="btn btn-default"><i class="glyphicon glyphicon-share"></i> GitHub</a>
+			            <a href="http://github.com/<%= @user.github_username %>" target="_blank" type="button" class="btn-sm btn-default"><i class="glyphicon glyphicon-share"></i> GitHub</a>
 			        </div>
-				    <div><%= @user.username %> | Snippets: <%= @user.snippets.count %> | Favorites: <%= @user.likes.count %></div>
+				    <div class="user-meta">
+				        <h4>Snippets: <%= @user.snippets.count %> | Favorites: <%= @user.likes.count %></h4>
+				    </div>
 			    </div>
 
 			</div>
@@ -46,7 +48,7 @@
 		                            <div class="useravatar">
 		                                <%= image_tag @user.gravatar_url %>
 		                            </div>
-		                            <small><%= time_ago_in_words(s.created_at) %></small>
+		                            <small><%= time_ago_in_words(s.created_at) %> ago</small>
 		                            <div>Comments: <%= s.comments.count %></div>
 		                            <div>Likes: <%= s.likes.count %></div>
 		                        </div>
@@ -99,7 +101,7 @@
 	                                <div class="useravatar">
 	                                    <%= image_tag l.snippet.user.gravatar_url %>
 	                                </div>
-	                                <small><%= time_ago_in_words(l.snippet.created_at) %></small>
+	                                <small><%= time_ago_in_words(l.snippet.created_at) %> ago</small>
 	                                <div>Comments: <%= l.snippet.comments.count %></div>
 	                                <div>Likes: <%= l.snippet.likes.count %></div>
 	                            </div>

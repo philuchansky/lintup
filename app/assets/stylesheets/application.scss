@@ -27,6 +27,11 @@
   width:90px;
 }
 
+//override success navbar link:
+.navbar-default .navbar-nav > li > a.btn-success:hover{
+  background-color:#169E84;
+  color:#FFF;
+}
 
 //utility classes
 .vertical-form-spacer {
