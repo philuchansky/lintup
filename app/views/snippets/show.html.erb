@@ -28,7 +28,7 @@
 
 <div class="row leave-comment">
 	<div class="col-md-3 row-title">
-	    <h3>Leave A Comment</h3>
+	    <h3>Leave a Comment</h3>
 		(Markdown Supported! <i class="glyphicon glyphicon-thumbs-up ml-5"></i>)
 	</div>
 	<div class="col-md-7">
@@ -45,7 +45,7 @@
 
 <div class="row previous-comments">
     <div class="col-md-3 row-title">
-        <h3>Previous comments</h3>
+        <h3>Previous Comments</h3>
     </div>
 </div>
 
@@ -53,19 +53,20 @@
     <% @snippet.comments.order("created_at DESC").each do |c| %>
         <div class="row comment">
 			<div class="col-md-3 align-right">
-			    <div class="commenter-avatar"><%= image_tag c.user.gravatar_url %></div>
-			    <h4><%= link_to c.user.username, user_path(c.user) %></h4>
-				<%= time_ago_in_words(c.created_at) %> ago
+			    <div class="commenter-avatar pull-right">
+			        <a href="<%= user_path(c.user) %>"><%= image_tag c.user.gravatar_url %></a>
+			    </div>
+			    <div class="commenter-link"><%= link_to c.user.username, user_path(c.user) %></div>
+				<small><%= time_ago_in_words(c.created_at) %> ago</small>
 			</div>
 			<div class="col-md-7">
-
-
 	            <textarea class="comment-body" disabled><%= c.body %></textarea>
-	            <% if current_user == c.user || current_user == @snippet.user %>
-	                <%= link_to 'Delete', delete_comment_path(c, :call_back_url => request.original_url), class: 'btn-xs btn-default' %>
-	            <% end %>
-
 			</div>
+	        <div class="col-md-2">
+	            <% if current_user == c.user || current_user == @snippet.user %>
+			        <a href="<%= delete_comment_path(c, :call_back_url => request.original_url) %>" class=""><i class="glyphicon glyphicon-remove"></i></a>
+	            <% end %>
+	        </div>
         </div>
     <% end %>
 </div>
