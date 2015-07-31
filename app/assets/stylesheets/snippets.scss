@@ -14,13 +14,22 @@
   border-bottom:1px solid #dadada;
 }
 
-.comments,.leave-comment {
-  padding-top:40px;
+ .leave-comment {
+   padding:30px 0;
+   border-bottom:1px solid #dadada;
 }
 
-#new_comment .CodeMirror{
-  min-height:150px;
+.previous-comments {
+  margin-top:30px;
+}
+
+#new_comment .CodeMirror,.comment .CodeMirror{
+  //min-height:150px;
   border:1px solid #dadada
+}
+
+.comment {
+  margin-bottom:30px;
 }
 
 .row-title {
@@ -34,6 +43,6 @@
   border-bottom:none!important;
 }
 
-.snippet h1{
+.snippet h1,.row-title h3{
   margin-top:0
 }
