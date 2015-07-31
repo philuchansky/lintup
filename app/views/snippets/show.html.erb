@@ -26,36 +26,51 @@
     </div>
 </div>
 
-Likes: <%= @snippet.likes.count %><br>
-Comments: <%= @snippet.comments.count %>
-
-<% @snippet.comments.each do |c| %>
-    <div class="comment">
-        <hr>
-        <h4>From: <%= c.user.username %></h4>
-	    <h5>Comment ID: <%= c.id %></h5>
-        <textarea class="comment-body" disabled><%= c.body %></textarea>
-	    <% if current_user == c.user || current_user == @snippet.user %>
-	        <%= link_to 'Delete', delete_comment_path(c, :call_back_url => request.original_url) %>
-	    <% end %>
-    </div>
-<% end %>
-
-<hr>
-<% if logged_in? %>
-	<%= form_for(@comment, url: snippet_path(@snippet.id)) do |f|%>
+<div class="row leave-comment">
+	<div class="col-md-2 row-title">
 	    Leave A Comment:<br>
-	    <%= f.text_area :body %><br>
-	    <%= f.submit 'Post Comment' %>
-	<% end %>
+	</div>
+	<div class="col-md-10">
 
-	<script>
+	    <% if logged_in? %>
+	        <%= form_for(@comment, url: snippet_path(@snippet.id)) do |f|%>
+	            <%= f.text_area :body %><br>
+	            <%= f.submit 'Post Comment' %>
+	        <% end %>
 
-	</script>
+	        <script>
 
-<% else %>
-	<%= link_to 'Create an account', new_user_path %> to leave comments.
-<% end %>
+	        </script>
+
+	    <% else %>
+	        <%= link_to 'Create an account', new_user_path %> to leave comments.
+	    <% end %>
+
+
+	    Likes: <%= @snippet.likes.count %><br>
+	    Comments: <%= @snippet.comments.count %>
+	</div>
+</div>
+
+<div class="row comments">
+	<div class="col-md-2 row-title">
+		Previous comments:
+	</div>
+	<div class="col-md-10">
+	    <% @snippet.comments.each do |c| %>
+	        <div class="comment">
+	            <hr>
+	            <h4>From: <%= c.user.username %></h4>
+	            <h5>Comment ID: <%= c.id %></h5>
+	            <textarea class="comment-body" disabled><%= c.body %></textarea>
+	            <% if current_user == c.user || current_user == @snippet.user %>
+	                <%= link_to 'Delete', delete_comment_path(c, :call_back_url => request.original_url) %>
+	            <% end %>
+	        </div>
+	    <% end %>
+	</div>
+</div>
+
 
 <script>
 	$(function(){
