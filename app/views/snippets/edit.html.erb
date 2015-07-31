@@ -1,10 +1,46 @@
-<h1>Edit Snippet:</h1>
-<%= form_for @snippet do |f| %>
-    Title: <%= f.text_field :title, value: @snippet.title %><br>
-    Language: <%= select_tag 'snippet[language]', options_for_select(language_modes.collect {|m| [ m[:name],m[:language_mode]] },@language_mode) %>
-    Snippet: <%= f.text_area :content, value: @snippet.content %>
-    <%= f.submit 'Update Snippet' %>
-<% end %>
+<div class="snippet">
+    <div class="row">
+        <div class="col-md-2 hidden-xs hidden-sm user-editing">
+            <div class="useravatar">
+                <a href="<%= user_path(current_user.id) %>"><%= image_tag current_user.gravatar_url %></a>
+            </div>
+            <div class="snippet-meta">
+                <%= link_to current_user.username, user_path(current_user.id) %>
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div class="row">
+                <%= form_for(@snippet, html: {class: 'form-horizontal'}) do |f| %>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2"><h1>Edit Snippet:</h1></div>
+                        <%= f.label :title, 'Title', class: 'col-md-2 control-label' %>
+                        <div class="col-sm-10">
+                            <%= f.text_field :title, value: @snippet.title, class: 'form-control' %><br>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= f.label 'snippet[language', 'Language', class: 'col-md-2 control-label' %>
+
+                        <div class="col-sm-10">
+                            <%= select_tag 'snippet[language]', options_for_select(language_modes.collect {|m| [ m[:name],m[:language_mode]] },@language_mode), {class: 'form-control'} %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10 new-snippet-container">
+                            <%= f.text_area :content %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <%= f.submit 'Update Snippet', class: 'btn btn-success' %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 	$(function(){

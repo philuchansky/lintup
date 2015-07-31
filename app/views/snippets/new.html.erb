@@ -1,11 +1,47 @@
 <h1>Create New Snippet:</h1>
 
-<%= form_for(@snippet, url: new_snippet_path) do |f| %>
-	Title: <%= f.text_field :title %><br>
-	Language: <%= select_tag 'snippet[language]', options_for_select(language_modes.collect {|m| [ m[:name],m[:language_mode]] }) %>
-	Snippet: <%= f.text_area :content %>
-	<%= f.submit 'Add Snippet' %>
-<% end %>
+<div class="snippet">
+    <div class="row">
+        <div class="col-md-2 hidden-xs hidden-sm user-creating">
+            <div class="useravatar">
+                <a href="<%= user_path(current_user.id) %>"><%= image_tag current_user.gravatar_url %></a>
+            </div>
+            <div class="snippet-meta">
+                <%= link_to current_user.username, user_path(current_user.id) %>
+            </div>
+        </div>
+        <div class="col-md-9">
+	        <div class="row">
+	            <%= form_for(@snippet, url: new_snippet_path, html: {class: 'form-horizontal'}) do |f| %>
+		                <div class="form-group">
+		                    <%= f.label :title, 'Title', class: 'col-md-2 control-label' %>
+		                    <div class="col-sm-10">
+		                        <%= f.text_field :title, class: 'form-control' %>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <%= f.label 'snippet[language', 'Language', class: 'col-md-2 control-label' %>
+
+		                    <div class="col-sm-10">
+
+		                        <%= select_tag('snippet[language]', options_for_select(language_modes.collect {|m| [ m[:name],m[:language_mode]] }), {class: 'form-control'}) %>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <div class="col-sm-offset-2 col-sm-10 new-snippet-container">
+		                        <%= f.text_area :content %>
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <div class="col-sm-offset-2 col-sm-10">
+		                        <%= f.submit 'Add Snippet', class: 'btn btn-success' %>
+		                    </div>
+		                </div>
+	            <% end %>
+	        </div>
+        </div>
+    </div>
+</div>
 
 <script>
 	$(function(){

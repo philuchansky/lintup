@@ -95,7 +95,7 @@
 .user-posted {
   padding-top:40px
 }
-.user-posted img{
+.user-posted img, .user-editing img, .user-creating img{
   max-width:120px;
   border-radius: 50%;
   border: 5px solid rgba(255, 255, 255, 0.5);
