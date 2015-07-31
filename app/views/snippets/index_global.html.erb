@@ -1,11 +1,10 @@
 <% if logged_in? %>
-
         <h1>Recent Snippets:</h1>
 <% else %>
     <div class="jumbotron">
         <h1>Start Snipping!</h1>
         <p>Lint_Up lets you discover and share your favorite code snippets. So what are you waiting for? Start snipping!</p>
-        <p><%= link_to 'Create a Free Account', new_user_url, class: 'btn btn-success btn-lg' %> <%= link_to 'Sign In', new_user_url, class: 'btn btn-primary btn-lg' %></p>
+        <p><%= link_to 'Create a Free Account', new_user_path, class: 'btn btn-success btn-lg' %> <%= link_to 'Sign In', new_session_path, class: 'btn btn-primary btn-lg' %></p>
     </div>
 <% end %>
 

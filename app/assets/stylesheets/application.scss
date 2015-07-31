@@ -20,6 +20,10 @@
 @import "bootstrap-sprockets";
 @import 'bootswatch';
 
+body {
+  padding-top: 50px;
+}
+
 .header-nav {
   border-radius:0!important
 }
