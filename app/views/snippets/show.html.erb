@@ -1,12 +1,14 @@
 <div class="snippet">
     <div class="row">
-        <div class="col-md-3 hidden-xs hidden-sm user-posted">
+        <div class="col-md-2 hidden-xs hidden-sm user-posted">
             <div class="useravatar">
-                <%= image_tag @snippet.user.gravatar_url %>
+                <a href="<%= user_path(@snippet.user.id) %>"><%= image_tag @snippet.user.gravatar_url %></a>
             </div>
-            <small><%= time_ago_in_words(@snippet.created_at) %> ago</small>
-            <div>Comments: <%= @snippet.comments.count %></div>
-            <div>Likes: <%= @snippet.likes.count %></div>
+	        <div class="snippet-meta">
+	            <%= link_to @snippet.user.username, user_path(@snippet.user.id) %> | <small><%= time_ago_in_words(@snippet.created_at) %> ago</small>
+	            <div>Comments: <%= @snippet.comments.count %></div>
+	            <div>Likes: <%= @snippet.likes.count %></div>
+	        </div>
         </div>
         <div class="col-md-9">
             <h1><%= link_to @snippet.title, snippet_path(@snippet.id) %> <small><%= language_modes.find {|language| language[:language_mode] == @snippet.language}[:name] %></small></h1>

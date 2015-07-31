@@ -1,33 +1,54 @@
-<% if !logged_in? %>
+<% if logged_in? %>
+
+        <h1>Recent Snippets:</h1>
+<% else %>
     <div class="jumbotron">
         <h1>Start Snipping!</h1>
         <p>Lint_Up lets you discover and share your favorite code snippets. So what are you waiting for? Start snipping!</p>
-        <p><%= link_to 'Create A Free Account', new_user_url, class: 'btn btn-primary btn-lg' %></p>
+        <p><%= link_to 'Create a Free Account', new_user_url, class: 'btn btn-success btn-lg' %> <%= link_to 'Sign In', new_user_url, class: 'btn btn-primary btn-lg' %></p>
     </div>
 <% end %>
 
 <% @snippets.order("created_at DESC").each do |s| %>
-	<div>
-		<hr>
-	    <h3><%= link_to s.title, snippet_path(s.id) %></h3>
-		<h4>By: <%= link_to s.user.username, user_path(s.user) %> | <%= time_ago_in_words(s.created_at) %> ago</h4>
-		<h5>Language: <%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></h5>
-		<textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
-	</div>
-
-    <script>
-	    $(function(){
-		    var textArea = document.getElementById('snippet-<%= s.id %>');
-		    var myCodeMirror = CodeMirror.fromTextArea(textArea, {
-			    lineNumbers: true,
-			    theme: 'monokai',
-			    lineWrapping: true,
-			    readOnly: true,
-			    mode: '<%= s.language %>'
-		    });
-	    })
-    </script>
-
+    <div class="snippet">
+        <div class="row">
+            <div class="col-md-2 hidden-xs hidden-sm user-posted">
+                <div class="useravatar">
+                    <%= image_tag s.user.gravatar_url %>
+                </div>
+                <small><%= time_ago_in_words(s.created_at) %> ago</small>
+                <div>Comments: <%= s.comments.count %></div>
+                <div>Likes: <%= s.likes.count %></div>
+            </div>
+            <div class="col-md-10">
+                <h1><%= link_to s.title, snippet_path(s.id) %> <small><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></small></h1>
+                <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
+                <% if logged_in? %>
+                    <% if current_user.id == s.user.id %>
+                        <a href="<%= edit_snippet_path(s.id) %>" class="btn-sm btn-primary">Edit</a>
+                    <% else %>
+                        <% if current_user.already_likes?(s) %>
+                            <%= link_to 'Unlike', {controller: 'likes', action: 'destroy', id: s.id}, class: 'btn-sm btn-default' %>
+                        <% else %>
+                            <%= link_to 'Like', {controller: 'likes', action: 'create', id: s.id}, class: 'btn-sm btn-success' %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <script>
+	        $(function(){
+		        var textArea = document.getElementById('snippet-<%= s.id %>');
+		        var myCodeMirror = CodeMirror.fromTextArea(textArea, {
+			        lineNumbers: true,
+			        theme: 'monokai',
+			        lineWrapping: true,
+			        readOnly: true,
+			        mode: '<%= s.language %>'
+		        });
+	        })
+        </script>
+    </div>
 <% end %>
 
 
