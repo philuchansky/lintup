@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
+
 gem 'codemirror-rails'
 gem 'gravtastic'
 
