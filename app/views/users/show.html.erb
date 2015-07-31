@@ -9,10 +9,11 @@
 			</div>
 			<div class="col-md-10">
 			    <div class="card-info">
-			        <div><span class="card-title"><%= "#{@user.fname} #{@user.lname}"%></span></div>
-			        <div class="btn-group" role="group" aria-label="...">
+			        <span class="card-title"><%= "#{@user.fname} #{@user.lname}"%></span>
+			        <div class="btn-group pull-right" role="group" aria-label="...">
 			            <a href="http://github.com/<%= @user.github_username %>" target="_blank" type="button" class="btn btn-default"><i class="glyphicon glyphicon-share"></i> GitHub</a>
 			        </div>
+				    <div><%= @user.username %> | Snippets: <%= @user.snippets.count %> | Favorites: <%= @user.likes.count %></div>
 			    </div>
 
 			</div>
@@ -50,16 +51,16 @@
 		                            <div>Likes: <%= s.likes.count %></div>
 		                        </div>
 		                        <div class="col-md-10">
-		                            <h3><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %>: <%= link_to s.title, snippet_path(s.id) %></h3>
+		                            <h1><%= link_to s.title, snippet_path(s.id) %> <small><%= language_modes.find {|language| language[:language_mode] == s.language}[:name] %></small></h1>
 		                            <textarea disabled id="snippet-<%= s.id %>"><%= s.content %></textarea>
 		                            <% if logged_in? %>
 		                                <% if current_user.id == s.user.id %>
-		                                    <%= link_to 'Edit', edit_snippet_path(s.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
+					                        <a href="<%= edit_snippet_path(s.id) %>" class="btn-sm btn-primary">Edit</a>
 		                                <% else %>
 		                                    <% if current_user.already_likes?(s) %>
-		                                        <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: s.id %>
+		                                        <%= link_to 'Unlike', {controller: 'likes', action: 'destroy', id: s.id}, class: 'btn-sm btn-default' %>
 		                                    <% else %>
-		                                        <%= link_to 'Like', controller: 'likes', action: 'create', id: s.id %>
+		                                        <%= link_to 'Like', {controller: 'likes', action: 'create', id: s.id}, class: 'btn-sm btn-success' %>
 		                                    <% end %>
 		                                <% end %>
 		                            <% end %>
@@ -103,16 +104,16 @@
 	                                <div>Likes: <%= l.snippet.likes.count %></div>
 	                            </div>
 	                            <div class="col-md-10">
-	                                <h3><%= language_modes.find {|language| language[:language_mode] == l.snippet.language}[:name] %>: <%= link_to l.snippet.title, snippet_path(l.snippet.id) %></h3>
+	                                <h1><%= link_to l.snippet.title, snippet_path(l.snippet.id) %> <small><%= language_modes.find {|language| language[:language_mode] == l.snippet.language}[:name] %></small></h1>
 	                                <textarea disabled id="liked-snippet-<%= l.snippet.id %>"><%= l.snippet.content %></textarea>
 	                                <% if logged_in? %>
 	                                    <% if current_user.id == l.snippet.user.id %>
-	                                        <%= link_to 'Edit', edit_snippet_path(l.snippet.id) %> | <%= link_to 'Delete', delete_snippet_path(s.id) %>
+	                                        <%= link_to 'Edit', edit_snippet_path(l.snippet.id), class: 'btn btn-primary' %> <%= link_to 'Delete', delete_snippet_path(s.id), class: 'btn btn-danger' %>
 	                                    <% else %>
 	                                        <% if current_user.already_likes?(l.snippet) %>
-	                                            <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: l.snippet.id %>
-	                                        <% else %>
-	                                            <%= link_to 'Like', controller: 'likes', action: 'create', id: l.snippet.id %>
+	                                            <%= link_to 'Unlike', {controller: 'likes', action: 'destroy', id: l.snippet.id}, class: 'btn-sm btn-default' %>
+	                                            <% else %>
+	                                            <%= link_to 'Like', {controller: 'likes', action: 'create', id: l.snippet.id}, class: 'btn-sm btn-success' %>
 	                                        <% end %>
 	                                    <% end %>
 	                                <% end %>

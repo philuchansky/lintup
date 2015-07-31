@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .CodeMirror {
   font-size:18px;
-  height:auto
+  height:auto;
+  margin-bottom:10px;
 }
 
 .snippet {
@@ -19,6 +20,6 @@
   border-bottom:none!important;
 }
 
-.snippet h3{
+.snippet h1{
   margin-top:0
 }
