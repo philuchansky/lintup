@@ -5,7 +5,7 @@
 	<div class="user-info">
 		<div class="row">
 			<div class="col-md-2">
-			    <div class="useravatar"><%= image_tag @user.gravatar_url %></div>
+			    <div class="useravatar"><a href="http://gravatar.com" target="_blank"><img data-toggle="tooltip" data-placement="right" title="You can change your profile picture at Gravatar.com!" src="<%= @user.gravatar_url %>"></a></div>
 			</div>
 			<div class="col-md-10">
 			    <div class="card-info">
@@ -158,6 +158,8 @@
 				codeMirrors[i].CodeMirror.refresh();
 			}
 		})
+
+		$('[data-toggle="tooltip"]').tooltip()
 	})
 </script>
 

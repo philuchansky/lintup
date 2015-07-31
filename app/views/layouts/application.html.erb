@@ -8,6 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body>
+
+    <% flash.each do |key, value| %>
+    <div id="flash-container">
+        <div class="flash-msg alert alert-<%= key %>"><%= value %></div>
+    </div>
+    <% end %>
+
+
 <!-- NavBar -->
 	<nav class="navbar navbar-default header-nav navbar-fixed-top">
 	    <div class="container">
@@ -20,6 +28,8 @@
 	                <span class="icon-bar"></span>
 	            </button>
 		        <a class="navbar-brand" href="<%= root_path %>"><%= image_tag "logo.png" %></a>
+
+
 
 
 	        </div>
@@ -54,10 +64,15 @@
 	</nav>
 	<!---->
 	<div class="container">
-	    <% flash.each do |key, value| %>
-	        <div class="flash-msg alert alert-<%= key %>"><%= value %></div>
-	    <% end %>
+
 	    <%= yield %>
 	</div>
+
+
+	<script>
+		$(function(){
+			$('#flash-container').animate({top:25}).delay(3000).animate({top:-100});
+		})
+	</script>
 </body>
 </html>
