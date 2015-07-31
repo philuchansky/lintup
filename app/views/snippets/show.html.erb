@@ -1,20 +1,31 @@
-<h1><%= @snippet.title %></h1>
-<div>by <%= link_to @snippet.user.username, user_path(@snippet.user) %> | <%= time_ago_in_words(@snippet.created_at) %> ago</div>
-<h2>Language: <%= language_modes.find {|language| language[:language_mode] == @snippet.language}[:name] %></h2>
-<textarea disabled id="snippet"><%= @snippet.content %></textarea>
-<% if logged_in? %>
-    <% if current_user.id == @snippet.user.id %>
-        <%= link_to 'Edit', edit_snippet_path %> | <%= link_to 'Delete', delete_snippet_path(@snippet.id) %>
-    <% else %>
-		<% if current_user.already_likes?(@snippet) %>
-            <%= link_to 'Unlike', controller: 'likes', action: 'destroy', id: @snippet.id %>
-        <% else %>
-			<%= link_to 'Like', controller: 'likes', action: 'create', id: @snippet.id %>
-		<% end %>
-    <% end %>
-<% end %>
+<div class="snippet">
+    <div class="row">
+        <div class="col-md-2 hidden-xs hidden-sm user-posted">
+            <div class="useravatar">
+                <%= image_tag @snippet.user.gravatar_url %>
+            </div>
+            <small><%= time_ago_in_words(@snippet.created_at) %> ago</small>
+            <div>Comments: <%= @snippet.comments.count %></div>
+            <div>Likes: <%= @snippet.likes.count %></div>
+        </div>
+        <div class="col-md-10">
+            <h1><%= link_to @snippet.title, snippet_path(@snippet.id) %> <small><%= language_modes.find {|language| language[:language_mode] == @snippet.language}[:name] %></small></h1>
+            <textarea disabled id="snippet-<%= @snippet.id %>"><%= @snippet.content %></textarea>
+            <% if logged_in? %>
+                <% if current_user.id == @snippet.user.id %>
+                    <a href="<%= edit_snippet_path(@snippet.id) %>" class="btn-sm btn-primary">Edit</a>
+                <% else %>
+                    <% if current_user.already_likes?(@snippet) %>
+                        <%= link_to 'Unlike', {controller: 'likes', action: 'destroy', id: @snippet.id}, class: 'btn-sm btn-default' %>
+                    <% else %>
+                        <%= link_to 'Like', {controller: 'likes', action: 'create', id: @snippet.id}, class: 'btn-sm btn-success' %>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
 
-<hr>
 Likes: <%= @snippet.likes.count %><br>
 Comments: <%= @snippet.comments.count %>
 
@@ -48,7 +59,7 @@ Comments: <%= @snippet.comments.count %>
 
 <script>
 	$(function(){
-		var myTextArea = document.getElementById('snippet');
+		var myTextArea = document.getElementById('snippet-<%= @snippet.id %>');
 		var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
 			lineNumbers: true,
 			theme: 'monokai',
