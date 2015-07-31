@@ -1,3 +1,6 @@
-<h1>Are You Sure You Want To Delete This Snippet?</h1>
 
-<%= link_to "Cancel", user_path(@user) %> | <%= link_to 'Delete Snippet', confirm_delete_snippet_path %>
+<div class="center-confirm">
+	<h1>Are You Sure You Want To Delete This Snippet?</h1>
+	<div class="vertical-form-spacer"></div>
+	<%= link_to "Cancel", user_path(@user), class: 'btn btn-default' %> <%= link_to 'Delete Snippet', confirm_delete_snippet_path, class: 'btn btn-danger' %>
+</div>

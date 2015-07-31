@@ -34,6 +34,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <%= f.submit 'Update Snippet', class: 'btn btn-success' %>
+                            <%= link_to 'Delete', delete_snippet_path, class: 'btn btn-danger' %>
                         </div>
                     </div>
                 <% end %>
