@@ -53,8 +53,9 @@
     <% @snippet.comments.order("created_at DESC").each do |c| %>
         <div class="row comment">
 			<div class="col-md-3 align-right">
+			    <div class="commenter-avatar"><%= image_tag c.user.gravatar_url %></div>
 			    <h4><%= link_to c.user.username, user_path(c.user) %></h4>
-				<%= time_ago_in_words(c.created_at) %>
+				<%= time_ago_in_words(c.created_at) %> ago
 			</div>
 			<div class="col-md-7">
 
