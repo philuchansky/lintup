@@ -1,6 +1,6 @@
 <div class="snippet">
     <div class="row">
-        <div class="col-md-2 hidden-xs hidden-sm user-posted">
+        <div class="col-md-3 hidden-xs hidden-sm user-posted">
             <div class="useravatar">
                 <%= image_tag @snippet.user.gravatar_url %>
             </div>
@@ -8,7 +8,7 @@
             <div>Comments: <%= @snippet.comments.count %></div>
             <div>Likes: <%= @snippet.likes.count %></div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-9">
             <h1><%= link_to @snippet.title, snippet_path(@snippet.id) %> <small><%= language_modes.find {|language| language[:language_mode] == @snippet.language}[:name] %></small></h1>
             <textarea disabled id="snippet-<%= @snippet.id %>"><%= @snippet.content %></textarea>
             <% if logged_in? %>
@@ -27,28 +27,19 @@
 </div>
 
 <div class="row leave-comment">
-	<div class="col-md-2 row-title">
-	    Leave A Comment:<br>
+	<div class="col-md-3 row-title">
+	    <h3>Leave A Comment</h3>
+		<h4>Markdown <i class="glyphicon glyphicon-thumbs-up ml-5"></i></h4>
 	</div>
-	<div class="col-md-10">
-
+	<div class="col-md-9">
 	    <% if logged_in? %>
 	        <%= form_for(@comment, url: snippet_path(@snippet.id)) do |f|%>
 	            <%= f.text_area :body %><br>
-	            <%= f.submit 'Post Comment' %>
+	            <%= f.submit 'Post Comment', class: 'btn btn-primary' %>
 	        <% end %>
-
-	        <script>
-
-	        </script>
-
 	    <% else %>
 	        <%= link_to 'Create an account', new_user_path %> to leave comments.
 	    <% end %>
-
-
-	    Likes: <%= @snippet.likes.count %><br>
-	    Comments: <%= @snippet.comments.count %>
 	</div>
 </div>
 
@@ -57,7 +48,7 @@
 		Previous comments:
 	</div>
 	<div class="col-md-10">
-	    <% @snippet.comments.each do |c| %>
+	    <% @snippet.comments.order("created_at DESC").each do |c| %>
 	        <div class="comment">
 	            <hr>
 	            <h4>From: <%= c.user.username %></h4>
@@ -70,7 +61,6 @@
 	    <% end %>
 	</div>
 </div>
-
 
 <script>
 	$(function(){
@@ -96,7 +86,8 @@
 		var commentCodeMirror = CodeMirror.fromTextArea(newComment, {
 			lineNumbers: true,
 			lineWrapping: true,
-			mode: 'markdown'
+			mode: 'markdown',
+			theme: 'base16-light'
 		});
 	})
 </script>

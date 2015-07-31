@@ -18,6 +18,11 @@
   padding-top:40px;
 }
 
+#new_comment .CodeMirror{
+  min-height:150px;
+  border:1px solid #dadada
+}
+
 .row-title {
   text-align:right;
 }
