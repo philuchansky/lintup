@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def language_modes
     [
         {language_mode: 'coffeescript', name: 'CoffeeScript'},
@@ -43,5 +42,4 @@ class ApplicationController < ActionController::Base
         {language_mode: 'yaml', name: 'YAML'}
     ]
   end
-
 end
