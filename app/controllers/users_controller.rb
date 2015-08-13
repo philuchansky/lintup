@@ -65,3 +65,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:fname,:lname,:username,:email,:password,:password_confirmation,:github_username)
   end
 end
+
+# test change
