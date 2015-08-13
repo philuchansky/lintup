@@ -3,43 +3,43 @@
     <div class="row"><legend class="col-md-4 col-md-offset-4">Create Account:</legend></div>
     <fieldset>
         <div class="form-group">
-            <%= f.label :fname, 'First Name', class: 'col-md-4 control-label' %>
+            <%= f.label :fname, 'First Name*', class: 'col-md-4 control-label' %>
             <div class="col-md-5">
                 <%= f.text_field :fname, class: 'form-control' %>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :lname, 'Last Name', class: 'col-md-4 control-label' %>
+            <%= f.label :lname, 'Last Name*', class: 'col-md-4 control-label' %>
             <div class="col-md-5">
                 <%= f.text_field :lname, class: 'form-control' %>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :username, 'Username', class: 'col-md-4 control-label' %>
+            <%= f.label :username, 'Desired Username*', class: 'col-md-4 control-label' %>
             <div class="col-md-5">
                 <%= f.text_field :username, class: 'form-control' %>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :github_username, 'GitHub Name', class: 'col-md-4 control-label' %>
+            <%= f.label :github_username, 'GitHub Username (optional)', class: 'col-md-4 control-label' %>
             <div class="col-md-5">
                 <%= f.text_field :github_username, class: 'form-control' %>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :email, 'Email', class: 'col-md-4 control-label' %>
+            <%= f.label :email, 'Email*', class: 'col-md-4 control-label' %>
             <div class="col-md-5">
                 <%= f.text_field :email, class: 'form-control' %>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :password, 'Password', class: 'col-md-4 control-label' %>
+            <%= f.label :password, 'Password*', class: 'col-md-4 control-label' %>
             <div class="col-md-5">
                 <%= f.password_field :password, class: 'form-control' %>
             </div>
         </div>
         <div class="form-group">
-            <%= f.label :password_confirmation, 'Confirm Password', class: 'col-md-4 control-label' %>
+            <%= f.label :password_confirmation, 'Confirm Password*', class: 'col-md-4 control-label' %>
             <div class="col-md-5">
                 <%= f.password_field :password_confirmation, class: 'form-control' %>
             </div>
