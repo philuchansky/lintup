@@ -8,7 +8,7 @@ Users can sign up for a free account and immediately begin contributing code sni
 
 Snippets can be associated with a particular programming language, which would affect the syntax highlighting when creating, editing or viewing a snippet.
 
-### [Deployed On Heroku](https://lintup.herokuapp.com/)
+### [Deployed On Heroku](https://lintup.herokuapp.com)
 
 # First Iteration ERD
 
