@@ -17,7 +17,8 @@ class SnippetsController < ApplicationController
   end
 
   def new
-    @snippet = Snippet.new
+    puts params
+    @snippet = Snippet.new({title: params[:title], language: params[:language], content: params[:content]})
   end
 
   def create
@@ -26,7 +27,7 @@ class SnippetsController < ApplicationController
     if @snippet.save
       redirect_to user_path(@snippet.user)
     else
-      redirect_to root_path
+      redirect_to new_snippet_path(snippet_params)
     end
   end
 
